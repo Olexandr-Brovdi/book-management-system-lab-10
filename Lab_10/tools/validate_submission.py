@@ -1,4 +1,4 @@
-"""Validate the local Lab_10 submission without claiming unperformed Docker/CI runs."""
+"""Validate Lab_10 code, reports, packages and actual Docker/CI evidence."""
 
 from pathlib import Path
 from zipfile import ZipFile
@@ -44,13 +44,13 @@ def validate():
             "09.11.2026",
             "222 passed",
             "70.",
-            "not run",
+            "success",
             "workflow",
             "docker",
             "wheel",
             "sdist",
             "mypy",
-            "системою доступу",
+            "github actions",
         ]:
             assert phrase in text, phrase
         assert set(re.findall(r"варіант\s*№?\s*(\d+)", text)) == {"2"}
@@ -96,10 +96,19 @@ def validate():
     )
     assert all(value == "PASS" for value in summary["quality"].values())
     assert summary["coverage"]["percent_covered"] >= 85
-    assert summary["ci"].startswith("NOT_RUN") and summary["docker"].startswith(
-        "NOT_RUN"
-    )
-    assert summary["publication"] == "DEFERRED_BY_USER"
+    assert summary["ci"] == summary["docker"] == "PASS"
+    assert summary["publication"] == "PUBLISHED"
+    ci = load("docs/results/ci.json")
+    assert ci["conclusion"] == "success" and ci["status"] == "completed"
+    assert len(ci["jobs"]) == 3
+    assert all(job["conclusion"] == "success" for job in ci["jobs"])
+    docker = load("docs/results/docker.json")
+    assert docker["status"] == docker["volume_restart_persistence"] == "PASS"
+    assert docker["container_state"] == "running"
+    assert docker["docker_health"] == "healthy"
+    assert docker["configured_user"] == "appuser"
+    assert docker["health"]["environment"] == "production"
+    assert docker["created_book"]["title"] == "Захар Беркут"
     assert load("docs/results/wheel.json")["status"] == "PASS"
     assert ".wheel-check" in load("docs/results/wheel.json")["module"]
     assert len(load("docs/control_answers.json")) == 70
@@ -136,7 +145,7 @@ def validate():
             path.read_text(encoding="utf-8"),
         ), path
     print(
-        "PASS: local Lab_10 variant2; identical reports/source;222 tests; quality/build/clean wheel;70 answers; Docker/CI explicitly pending."
+        "PASS: local Lab_10 variant2; identical reports/source;222 tests; quality/build/clean wheel;70 answers; Docker runtime and green CI verified."
     )
 
 

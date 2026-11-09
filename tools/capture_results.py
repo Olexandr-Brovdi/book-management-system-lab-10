@@ -76,9 +76,14 @@ def main():
             "twine": "PASS",
         },
         artifacts=artifacts,
-        docker="NOT_RUN: Engine unavailable; Docker Desktop access denied",
-        ci="NOT_RUN: push rejected without OAuth workflow scope; user deferred authorization",
-        publication="DEFERRED_BY_USER",
+        docker=json.loads((RESULTS / "docker.json").read_text())["status"]
+        if (RESULTS / "docker.json").exists()
+        else "NOT_RUN",
+        ci="PASS"
+        if (RESULTS / "ci.json").exists()
+        and json.loads((RESULTS / "ci.json").read_text())["conclusion"] == "success"
+        else "NOT_RUN",
+        publication="PUBLISHED" if (RESULTS / "ci.json").exists() else "LOCAL",
     )
     (RESULTS / "summary.json").write_text(
         json.dumps(summary, indent=2), encoding="utf-8"

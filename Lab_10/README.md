@@ -5,7 +5,7 @@
 Львівський національний університет імені Івана Франка. Курс «Професійний Python».  
 Перевірив: Свелеба Сергій Андрійович. Дата: 09.11.2026.
 
-## Призначення та стан підготовки
+## Призначення та результати
 
 Продовження власного проєкту Lab_01–Lab_09: книги й автори, пошук за автором,
 фільтрація за роком, найбільша книга, середня кількість сторінок. Збережено
@@ -17,12 +17,14 @@ Distribution `book-catalog`, import module `book_catalog`, версія `1.0.0`,
 packaged migration assets, Docker/Compose та GitHub Actions matrix.
 Локальні результати й логи збережено в `docs/results`.
 
-**Публікацію та CI відкладено за рішенням користувача.** GitHub створив репозиторій,
-але відхилив push workflow через відсутній OAuth scope `workflow`; нового входу
-не виконували. Наявність ci.yml не означає green CI. Docker CLI встановлено,
-проте Engine недоступний, а керування Docker Desktop не дозволене системою
-доступу. Docker image/container поки не підтверджено фактичним запуском.
-Ці обмеження відкрито зазначені у звіті та checklist, без підміни результатів.
+**Роботу опубліковано, GitHub Actions і Docker перевірено успішно.**
+[Підтверджений запуск CI](https://github.com/Olexandr-Brovdi/book-management-system-lab-10/actions/runs/42627788856):
+Python 3.11 і 3.12 — lint, format, mypy, 222 тести, build, twine та clean wheel smoke;
+Docker — build, HTTP health, non-root UID 10001, CRUD, Swagger, statistics і
+збереження книги після повторного створення контейнера на тому самому volume.
+Docker запускався на GitHub-hosted Ubuntu runner. Локальний Docker Engine
+для цієї перевірки не використовувався. Фактичні дані: `docs/results/ci.json`,
+`docker.json`, `docker.log`; скріншоти — `docs/screenshots`.
 
 ## Структура
 
@@ -146,7 +148,7 @@ sdist та wheel перебувають у `dist`; їхні розміри й SH
 
 ## Docker та Compose
 
-Ці команди підготовлено; для їх виконання потрібний працюючий Docker Engine:
+Відтворення перевірки на комп’ютері з працюючим Docker Engine:
 
 ```powershell
 docker build -t book-catalog:ci .
@@ -164,8 +166,8 @@ Named volume зберігає SQLite після видалення контей�
 `python tools/docker_smoke.py` після build tag `book-catalog:ci` перевіряє actual
 image, UID, environment, running/healthy state, API, створення книги й повторний
 запуск на тому самому volume. Script видаляє лише власні UUID test containers/volume.
-При успіху він створить `docs/results/docker.json` і `docker.log`. Відсутність
-цих успішних доказів у поточній підготовці не підмінюється прикладними даними.
+Під час успішного CI запуску він створив `docs/results/docker.json` і `docker.log`.
+Збережено фактичні image ID, розмір, environment, running/healthy стан та volume proof.
 
 ## Quality та CI/CD
 
@@ -190,7 +192,9 @@ Actions закріплено за commit SHA перевірених офіцій
 contents:read і не потребує власних secrets. Delivery тут — підготовка artifacts;
 автоматичного deployment у сторонні сервіси або публікації в PyPI/Docker Hub немає.
 
-Після надання дозволу GitHub `workflow` можна завантажити всі локальні commits
-і фактично перевірити CI. До цього його статус — **NOT RUN**, а не green.
-Повний звіт містить усі70 контрольних запитань і відповідей та чесний checklist
-виконаних/непідтверджених перевірок. Номер варіанта й предметна область збережені.
+Результат: усі три jobs підтвердженого запуску завершилися зі статусом Success.
+Artifacts містять wheel/sdist і результати тестів окремо для Python 3.11/3.12,
+а також Docker evidence. Локально: 222 passed, mypy 25 source files,
+coverage 98.51% за сукупним показником statements/branches (поріг 85%).
+Повний звіт містить усі 70 контрольних запитань і відповідей та checklist.
+Номер варіанта 2 й предметна область «Система обліку книг» збережені.

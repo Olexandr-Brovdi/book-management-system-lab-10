@@ -1,4 +1,4 @@
-"""Render actual local logs and a dist inventory, with explicit pending states."""
+"""Render actual local logs and a dist inventory, and actual CI Docker evidence."""
 
 from pathlib import Path
 import html
@@ -47,9 +47,32 @@ def main():
         for a in summary["artifacts"]
     )
     page = f"""<!doctype html><html lang="uk"><meta charset="utf-8"><title>Lab 10 — dist inventory</title><style>body{{font:19px Segoe UI,sans-serif;max-width:1140px;margin:40px auto;color:#17212b;background:#f6f7fa}}section{{background:white;padding:24px;border-radius:12px}}table{{width:100%;border-collapse:collapse;font-size:15px}}td,th{{padding:14px 8px;border-bottom:1px solid #ddd;text-align:left}}td:last-child{{font:12px Consolas,monospace}}h1{{font-size:29px}}.ok{{color:#126331}}.pending{{color:#7a4b00}}</style>
-<h1>Lab_10 · Book Catalog 1.0.0</h1><p>Бровді Олександр · ФеП-32 · Варіант 2</p><section><h2>Фактичний вміст dist/</h2><table><tr><th>File</th><th>Bytes</th><th>SHA-256</th></tr>{rows}</table><p class="ok">Local build + twine check: PASS · {summary["tests"]} tests passed · mypy: PASS</p><p>Джерело: файли dist/ та docs/results/summary.json.</p><p class="pending">Docker container: NOT RUN · GitHub Actions: NOT RUN · Публікацію відкладено користувачем.</p></section></html>"""
+<h1>Lab_10 · Book Catalog 1.0.0</h1><p>Бровді Олександр · ФеП-32 · Варіант 2</p><section><h2>Фактичний вміст dist/</h2><table><tr><th>File</th><th>Bytes</th><th>SHA-256</th></tr>{rows}</table><p class="ok">Local build + twine check: PASS · {summary["tests"]} tests passed · mypy: PASS</p><p>Джерело: файли dist/ та docs/results/summary.json.</p><p class="pending">Docker container: PASS · GitHub Actions: SUCCESS · Public repository published.</p></section></html>"""
     (ROOT / "docs/dist.html").write_text(page, encoding="utf-8")
-    print("Local evidence images and dist inventory created")
+    docker = json.loads((ROOT / "docs/results/docker.json").read_text(encoding="utf-8"))
+    console(
+        "docker",
+        [
+            "Actual Docker commands on GitHub-hosted Ubuntu runner",
+            "Run: 42627788856 / commit 015b773",
+            "docker images",
+            docker["docker_images"],
+            "docker ps",
+            docker["docker_ps"],
+            "docker inspect: " + docker["image_id"],
+            "configured user: " + docker["configured_user"] + " / verified UID: 10001",
+            "container: "
+            + docker["container_state"]
+            + " / health: "
+            + docker["docker_health"],
+            *docker["environment"],
+            "GET /health: " + json.dumps(docker["health"]),
+            "POST author/book + statistics + Swagger: PASS",
+            "Volume restart persistence: " + docker["volume_restart_persistence"],
+            "Source: actual docker-evidence CI artifact / docs/results/docker.json",
+        ],
+    )
+    print("Actual quality, package and Docker evidence images created")
 
 
 if __name__ == "__main__":

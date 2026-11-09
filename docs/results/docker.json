@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "image": "book-catalog:ci",
+  "image_id": "sha256:0e9e476733617dfa3ea2bd554a6002f0ba472ff710ce21abaad0c41aab36149c",
+  "image_size_bytes": 107570827,
+  "configured_user": "appuser",
+  "environment": [
+    "LOG_LEVEL=DEBUG",
+    "DATABASE_URL=sqlite:////app/data/library.db",
+    "APP_ENV=production"
+  ],
+  "health": {
+    "status": "ok",
+    "environment": "production",
+    "version": "1.0.0"
+  },
+  "container_state": "running",
+  "docker_health": "healthy",
+  "docker_ps": "CONTAINER ID   IMAGE             COMMAND                  CREATED         STATUS                   PORTS                       NAMES\naed3c42f1052   book-catalog:ci   \"book-catalog --host…\"   6 seconds ago   Up 6 seconds (healthy)   127.0.0.1:32768->8000/tcp   book-catalog-lab10-179e774c72",
+  "docker_images": "IMAGE             ID             DISK USAGE   CONTENT SIZE   EXTRA\nbook-catalog:ci   0e9e47673361        402MB          108MB   U",
+  "created_book": {
+    "title": "Захар Беркут",
+    "author_id": 1,
+    "year": 1883,
+    "pages": 192,
+    "isbn": null,
+    "id": 1,
+    "author": "Іван Франко"
+  },
+  "statistics": {
+    "count": 1,
+    "average_pages": 192.0,
+    "largest": {
+      "title": "Захар Беркут",
+      "author_id": 1,
+      "year": 1883,
+      "pages": 192,
+      "isbn": null,
+      "id": 1,
+      "author": "Іван Франко"
+    }
+  },
+  "volume_restart_persistence": "PASS",
+  "restarted_health": {
+    "status": "ok",
+    "environment": "production",
+    "version": "1.0.0"
+  }
+}

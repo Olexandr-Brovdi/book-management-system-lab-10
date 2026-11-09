@@ -177,7 +177,7 @@ running install_egg_info
 Copying src\book_catalog.egg-info to build\bdist.win-amd64\wheel\.\book_catalog-1.0.0-py3.12.egg-info
 running install_scripts
 creating build\bdist.win-amd64\wheel\book_catalog-1.0.0.dist-info\WHEEL
-creating 'C:\\Users\\Admin\\Documents\\Codex\\2026-11-07\\https-github-com-dioden5-student-grading\\outputs\\book-management-system-lab-10\\dist\\.tmp-xezm1d1w\\book_catalog-1.0.0-py3-none-any.whl' and adding 'build\\bdist.win-amd64\\wheel' to it
+creating 'C:\\Users\\Admin\\Documents\\Codex\\2026-11-07\\https-github-com-dioden5-student-grading\\outputs\\book-management-system-lab-10\\dist\\.tmp-p2gcbcxg\\book_catalog-1.0.0-py3-none-any.whl' and adding 'build\\bdist.win-amd64\\wheel' to it
 adding 'book_catalog/__init__.py'
 adding 'book_catalog/analytics.py'
 adding 'book_catalog/api.py'

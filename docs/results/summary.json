@@ -27,16 +27,16 @@
   "artifacts": [
     {
       "name": "book_catalog-1.0.0-py3-none-any.whl",
-      "bytes": 517744,
-      "sha256": "dc1250ab414b28989aaf366f1cc7d479bf617c87fea6f27fe9369d64fb5f0a86"
+      "bytes": 517757,
+      "sha256": "efd154b6aa39e2ac25b09d17d09a17676acb6634fe0aa984f21b2e1d3e6babe0"
     },
     {
       "name": "book_catalog-1.0.0.tar.gz",
-      "bytes": 513628,
-      "sha256": "48ed7e909d80bfb1297ae9f1d8dc0ed37b32666d948be81ea74d84b5fefdb0db"
+      "bytes": 513200,
+      "sha256": "9eeb855e251f50dc4206a1137ba96a43e3d9148a848ada305f80a7091aa2cde1"
     }
   ],
-  "docker": "NOT_RUN: Engine unavailable; Docker Desktop access denied",
-  "ci": "NOT_RUN: push rejected without OAuth workflow scope; user deferred authorization",
-  "publication": "DEFERRED_BY_USER"
+  "docker": "PASS",
+  "ci": "PASS",
+  "publication": "PUBLISHED"
 }

@@ -147,10 +147,10 @@ def build() -> None:
         f"Фактично виконано локально: {summary['tests']} passed, {summary['failed']} failed; Ruff lint і format, mypy, wheel/sdist build, twine metadata check та встановлення wheel у чисте virtual environment. Перевірено /health, API, packaged migrations, Swagger assets і restart persistence. Distribution: book-catalog 1.0.0, import module: book_catalog."
     )
     p(
-        "Dockerfile, .dockerignore, Compose та GitHub Actions workflow підготовлено. Побудова Docker image, запуск container і green CI поки не підтверджені: локальний Docker Engine недоступний, керування Docker Desktop відхилено системою доступу; GitHub відхилив push workflow через відсутній OAuth scope workflow. Користувач обрав продовжити лише локальну підготовку без нового входу."
+        "Docker image зібрано й запущено на GitHub-hosted Ubuntu runner. GitHub Actions завершився зі статусом Success: quality на Python 3.11 і 3.12 та Docker job. Підтверджено health, non-root UID 10001, environment, CRUD, Swagger і persistence після повторного створення контейнера."
     )
     p(
-        "Цей звіт відокремлює успішно виконані перевірки від підготовлених сценаріїв. Скріншотів успішного Docker/green CI немає, бо відповідні запуски не відбулися. Їх не підмінено макетами або даними зі зразка методички. Повне завершення зовнішньої частини залишається наступним кроком після відновлення доступу."
+        "Фактичні докази збережено в docs/results/ci.json і docker.json; наведено скріншот зеленого pipeline та результати docker images/ps. Перевірений commit 015b773 і run 42627788856 доступні в публічному репозиторії Olexandr-Brovdi/book-management-system-lab-10. Локальні та CI результати позначені за місцем виконання."
     )
 
     page("2. Структура фінального проєкту")
@@ -182,7 +182,7 @@ def build() -> None:
         "Збережено src-layout та звичну ієрархію з наданого зразка: src, tests, tools, docs та автономна Lab_10/report. Нові production files розташовано в корені. Virtual environments, caches, робочі БД та .env не включаються до submission. Wheel і sdist включено як готові результати пакування."
     )
     p(
-        "Окремий GitHub repository створено: https://github.com/Olexandr-Brovdi/book-management-system-lab-10. Push не прийнято через workflow scope, тому на момент цього звіту віддалений repository не містить підготовленої роботи. Усі зміни збережені локальними Git commits і в архіві."
+        "Окремий публічний GitHub repository: https://github.com/Olexandr-Brovdi/book-management-system-lab-10. Код та звіт опубліковано; quality matrix і Docker job завершилися успішно. Корінь проєкту та автономна папка Lab_10 містять однакові source, tests, configuration та artifacts."
     )
 
     page("3. Package metadata та pyproject.toml")
@@ -344,33 +344,20 @@ docker compose ps""",
         "Named volume відокремлює SQLite від lifecycle контейнера. /app/data створено з правами appuser; HEALTHCHECK використовує urllib і /health із timeout. Compose публікує порт лише на127.0.0.1. docker compose config --quiet пройшов локальну перевірку configuration."
     )
     p(
-        "Команди build/run наведено як готовий сценарій, а не виконаний факт. docker version підтвердив наявність CLI, але не зміг підключитися до dockerDesktopLinuxEngine. Система доступу окремо відхилила запуск Docker Desktop. Через це немає правдивого screenshot image або running container; такі вимоги позначено як NOT RUN у checklist."
+        "Docker build/run фактично виконано у GitHub Actions. Локально Docker Engine недоступний, тому використано GitHub-hosted Ubuntu runner. Named volume пережив видалення та повторне створення контейнера, і книга «Захар Беркут» залишилася доступною. Джерело — artifact docker-evidence цього CI run."
     )
 
-    page("14. Підготовлений Docker smoke scenario")
+    page("14. Результати запуску Docker")
     p(
-        "tools/docker_smoke.py виконує справжні Docker commands після появи доступного Engine та побудови tag book-catalog:ci. Він використовує UUID names і видаляє лише власні тестові ресурси. Не змінює сторонні containers або volumes."
-    )
-    table(
-        ["Крок", "Очікувана перевірка"],
-        [
-            ("1. docker run", "APP_ENV=production, LOG_LEVEL=DEBUG, named volume"),
-            ("2. /health + inspect", "HTTP200 і Docker state healthy"),
-            ("3. docker exec id -u", "UID10001, non-root"),
-            ("4. REST API", "POST author/book201, statistics, Swagger200"),
-            ("5. docker inspect/images/ps", "image ID, size, user, running state"),
-            ("6. remove/recreate container", "та сама книга лишається у volume"),
-            (
-                "7. evidence та cleanup",
-                "docker.json/log; видалення власних test resources",
-            ),
-        ],
-        [6, 10.6],
+        "tools/docker_smoke.py успішно виконав Docker commands на Ubuntu runner після build image book-catalog:ci. Використано UUID names для тестового контейнера й volume; після збереження evidence видалено лише власні тестові ресурси."
     )
     p(
-        "Поточний статус сценарію: NOT RUN. У submission немає вигаданого docker.json зі статусом PASS. Після успішного фактичного запуску script сам створить цей доказ. До того висновки про розмір image, runtime UID або persistence саме Docker не робляться."
+        "Статус сценарію PASS. Image sha256:0e9e47673361…; configured user appuser, фактичний UID 10001; state running/healthy; APP_ENV=production, LOG_LEVEL=DEBUG. Перезапуск із тим самим volume підтвердив збереження даних. Нижче наведено фактичний вивід команд, отриманий із CI artifact."
     )
-    code(read("docs/results/docker-availability.txt")[:1300], 8.5)
+    picture(
+        "docker",
+        "Фактичні docker images/ps, health, environment та volume proof із GitHub runner; джерело docs/results/docker.json.",
+    )
 
     workflow = read(".github/workflows/ci.yml")
     page("15. GitHub Actions quality matrix")
@@ -385,16 +372,23 @@ docker compose ps""",
         "Docker job залежить від успіху quality matrix. Він будує image, запускає підготовлений Docker smoke scenario і зберігає evidence artifact. Pipeline не публікує image у сторонній registry і не виконує автоматичний deployment. Тут Continuous Delivery означає підготовку перевірених package artifacts."
     )
     p(
-        "Фактичний запуск CI: NOT RUN. GitHub відхилив push, оскільки поточний OAuth-вхід не має scope workflow для створення .github/workflows/ci.yml. Користувач обрав «Поки підготуйте все локально». Новий вхід не запускався, permission не розширено, обхід обмеження не виконувався."
+        "Фактичний CI run 42627788856 завершився зі статусом Success. Коміт 015b773006968d61624b592b81d0cce1ff19cb2e перевірено на Python 3.11 і 3.12; Docker job успішно зібрав і запустив image. Усі три jobs зелені; збережено три artifacts: два package-and-tests та docker-evidence."
     )
     code(
-        """remote rejected: main -> main
-refusing to allow an OAuth App to create or update workflow
-.github/workflows/ci.yml without workflow scope""",
+        "https://github.com/Olexandr-Brovdi/\nbook-management-system-lab-10/actions/runs/42627788856\nquality (3.11): success\nquality (3.12): success\ndocker: success",
         9,
     )
     p(
-        "Тому package/Docker build у CI та screenshot green pipeline залишаються непідтвердженими. Локальні успішні lint/tests/build не називаються успіхом GitHub Actions. Після надання доступу потрібно push і перевірка всіх jobs конкретного commit; тоді цей розділ доповнюється фактичним run URL та screenshot."
+        "CI підтвердив lint, formatting, mypy, 222 тести, coverage threshold, wheel/sdist, metadata check і clean installed wheel. Docker підтвердив production environment, HTTP health та volume persistence. Успішний запуск тривав 1 хв 48 с. Скриншот наведено на наступній сторінці."
+    )
+
+    page("16.1 Підтверджений green CI")
+    picture(
+        "ci",
+        "GitHub Actions run 42627788856 — Success; quality Python 3.11/3.12 та Docker, три artifacts.",
+    )
+    p(
+        "Скріншот реального публічного run; повний URL і metadata збережено в docs/results/ci.json."
     )
 
     page("17. Lint, formatting та type checking")
@@ -451,7 +445,7 @@ python -m twine check dist/*
 book-catalog --host 127.0.0.1 --port 8000
 # Показати /health, /docs, створити автора та книгу
 
-# Після відновлення Docker та дозволу workflow
+# Відтворення перевіреного Docker сценарію
 docker build -t book-catalog:ci .
 python tools/docker_smoke.py
 git push -u origin main
@@ -462,13 +456,13 @@ git push -u origin main
         "Основна архітектура: Client → FastAPI → Pydantic → Service → Repository/Unit of Work → SQLite. Packaging не замінює domain validation або транзакції. NumPy, bounded author cache і async HTTPX залишаються доступними компонентами попередніх робіт."
     )
     p(
-        "Під час production demonstration слід показувати отримані дані й logs, а не лише наявність Dockerfile або ci.yml. Через поточні обмеження зовнішня частина захисту свідомо не позначається завершеною."
+        "Демонстрація підтверджена фактичними даними: /health повертає environment/version, Swagger описує API, CRUD створює автора й книгу, statistics обчислює 192.0 сторінки, а Docker volume зберігає книгу після recreate. Результати runner відокремлено від локальних перевірок."
     )
 
     page("20. Git commits та production checklist")
     code(read("docs/results/git.txt"), 9)
     p(
-        "Наведено знімок локальної історії до фінального оформлення звіту; документація та submission додаються окремим commit. Remote repository створено, але push не прийнято. У Git не зберігаються локальні authentication files, tokens або .env."
+        "Наведено знімок історії Git перед остаточним оновленням звіту. Коміти опубліковано в новому публічному репозиторії для Lab_10. Authentication files, tokens і приватний .env зберігаються поза repository. Фінальне оформлення доказів додається окремим commit."
     )
     table(
         ["Перевірка", "Стан"],
@@ -480,11 +474,11 @@ git push -u origin main
             ("clean wheel install / API / migrations", "PASS"),
             ("/health200/503, DB restart persistence", "PASS"),
             (".env ignored / .env.example / no embedded credentials", "PASS"),
-            ("README / workflow / Dockerfile / Compose", "PREPARED"),
+            ("README / workflow / Dockerfile / Compose", "PASS"),
             ("docker compose config", "PASS"),
-            ("Docker image build / container / volume test", "NOT RUN: Engine/access"),
-            ("GitHub push / green CI / CI artifacts", "DEFERRED: workflow scope"),
-            ("External Laboratory Checker", "NOT STARTED: publication pending"),
+            ("Docker image build / container / volume test", "PASS: GitHub runner"),
+            ("GitHub push / green CI / CI artifacts", "PASS: Success, 3 jobs"),
+            ("External Laboratory Checker", "Після публікації звіту"),
         ],
         [11, 5.6],
     )
@@ -503,18 +497,18 @@ git push -u origin main
             for run in para.runs:
                 run.font.size = Pt(10.5)
 
-    page("22. Висновок та подальше завершення")
+    page("22. Висновок")
     p(
         "Локально підготовлено production-oriented версію системи обліку книг: конфігурація через environment, logging, DB-aware health endpoint, installable entry point, wheel/sdist, portable migration і Swagger resources. Збережено domain, persistence, REST API, async і analytics частини. Усі222 тести та локальні quality/build checks успішні, clean installed wheel підтвердив працездатність без checkout."
     )
     p(
-        "Docker multi-stage/non-root/healthcheck/volume, Compose та CI matrix реалізовано як готові сценарії. Проте поточний Docker Engine недоступний, запуск Desktop не дозволено системою доступу, а GitHub потребує scope workflow. На прохання користувача роботу продовжено лише локально. Тому Docker runtime і green CI залишаються обов’язковими непідтвердженими пунктами, а повністю завершений production release не оголошується."
+        "Docker multi-stage build, non-root runtime, HEALTHCHECK і persistent volume перевірено на GitHub-hosted runner. GitHub Actions на Python 3.11 і 3.12 та Docker job завершилися успішно. Pipeline створює wheel/sdist і тестові artifacts. Повторний запуск контейнера зберіг книгу на volume."
     )
     p(
-        "Для завершення потрібно надати доступ до працездатного Docker Engine, виконати docker build/run та smoke scenario; після дозволу GitHub workflow завантажити commits, перевірити quality matrix і Docker job та додати їхні фактичні докази. Тільки після публікації коду й звіту має сенс запускати Laboratory Checker для Lab_10, варіанта2."
+        "Код, документацію та звіт опубліковано в окремому public repository book-management-system-lab-10. Структура містить автономну папку Lab_10 та канонічний звіт Lab_10/report/report.docx. До звіту додано реальні Docker/CI докази та всі 70 контрольних відповідей для варіанта №2."
     )
     p(
-        "Підготовлені код, artifacts, tests, журнали та всі70 відповідей збережено локально зі структурою попередніх лабораторних. Відокремлення виконаних перевірок від підготовлених сценаріїв забезпечує перевірюваність звіту й не створює неправдивого враження успішного Docker/CI запуску."
+        "Результат роботи — відтворюваний production-oriented сервіс обліку книг із перевіреним installed wheel, Docker runtime та автоматичним quality pipeline. Перевірка Laboratory Checker виконується окремо після публікації остаточної версії; її оцінку не підмінено результатами pytest або CI."
     )
     footer = section.footer.paragraphs[0]
     footer.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -529,7 +523,7 @@ git push -u origin main
     if ROOT.name != "Lab_10":
         shutil.copy2(target, ROOT / "docs/Lab_10_Report_Variant_2.docx")
     print(
-        "Lab_10 local preparation report created;70 answers; Docker/CI limitations explicit"
+        "Lab_10 report completed;70 answers; actual Docker runtime and green CI evidence"
     )
 
 
