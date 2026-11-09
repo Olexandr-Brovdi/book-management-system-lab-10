@@ -1,0 +1,236 @@
+$ C:\Users\Admin\Documents\Codex\2026-11-07\https-github-com-dioden5-student-grading\outputs\book-management-system-lab-10\.venv\Scripts\python.exe -m build
+running egg_info
+writing src\book_catalog.egg-info\PKG-INFO
+writing dependency_links to src\book_catalog.egg-info\dependency_links.txt
+writing entry points to src\book_catalog.egg-info\entry_points.txt
+writing requirements to src\book_catalog.egg-info\requires.txt
+writing top-level names to src\book_catalog.egg-info\top_level.txt
+reading manifest file 'src\book_catalog.egg-info\SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'src\book_catalog.egg-info\SOURCES.txt'
+running sdist
+running egg_info
+writing src\book_catalog.egg-info\PKG-INFO
+writing dependency_links to src\book_catalog.egg-info\dependency_links.txt
+writing entry points to src\book_catalog.egg-info\entry_points.txt
+writing requirements to src\book_catalog.egg-info\requires.txt
+writing top-level names to src\book_catalog.egg-info\top_level.txt
+reading manifest file 'src\book_catalog.egg-info\SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'src\book_catalog.egg-info\SOURCES.txt'
+running check
+creating book_catalog-1.0.0
+creating book_catalog-1.0.0\src\book_catalog
+creating book_catalog-1.0.0\src\book_catalog.egg-info
+creating book_catalog-1.0.0\src\book_catalog\migration_assets
+creating book_catalog-1.0.0\src\book_catalog\migration_assets\versions
+creating book_catalog-1.0.0\src\book_catalog\persistence
+creating book_catalog-1.0.0\src\book_catalog\swagger_assets
+copying files to book_catalog-1.0.0...
+copying LICENSE -> book_catalog-1.0.0
+copying README.md -> book_catalog-1.0.0
+copying pyproject.toml -> book_catalog-1.0.0
+copying src\book_catalog\__init__.py -> book_catalog-1.0.0\src\book_catalog
+copying src\book_catalog\analytics.py -> book_catalog-1.0.0\src\book_catalog
+copying src\book_catalog\api.py -> book_catalog-1.0.0\src\book_catalog
+copying src\book_catalog\catalog.py -> book_catalog-1.0.0\src\book_catalog
+copying src\book_catalog\config.py -> book_catalog-1.0.0\src\book_catalog
+copying src\book_catalog\database.py -> book_catalog-1.0.0\src\book_catalog
+copying src\book_catalog\exceptions.py -> book_catalog-1.0.0\src\book_catalog
+copying src\book_catalog\exporters.py -> book_catalog-1.0.0\src\book_catalog
+copying src\book_catalog\external_api.py -> book_catalog-1.0.0\src\book_catalog
+copying src\book_catalog\importers.py -> book_catalog-1.0.0\src\book_catalog
+copying src\book_catalog\main.py -> book_catalog-1.0.0\src\book_catalog
+copying src\book_catalog\models.py -> book_catalog-1.0.0\src\book_catalog
+copying src\book_catalog\parallel.py -> book_catalog-1.0.0\src\book_catalog
+copying src\book_catalog\profiling.py -> book_catalog-1.0.0\src\book_catalog
+copying src\book_catalog\protocols.py -> book_catalog-1.0.0\src\book_catalog
+copying src\book_catalog\repositories.py -> book_catalog-1.0.0\src\book_catalog
+copying src\book_catalog\runtime.py -> book_catalog-1.0.0\src\book_catalog
+copying src\book_catalog\schemas.py -> book_catalog-1.0.0\src\book_catalog
+copying src\book_catalog\services.py -> book_catalog-1.0.0\src\book_catalog
+copying src\book_catalog.egg-info\PKG-INFO -> book_catalog-1.0.0\src\book_catalog.egg-info
+copying src\book_catalog.egg-info\SOURCES.txt -> book_catalog-1.0.0\src\book_catalog.egg-info
+copying src\book_catalog.egg-info\dependency_links.txt -> book_catalog-1.0.0\src\book_catalog.egg-info
+copying src\book_catalog.egg-info\entry_points.txt -> book_catalog-1.0.0\src\book_catalog.egg-info
+copying src\book_catalog.egg-info\requires.txt -> book_catalog-1.0.0\src\book_catalog.egg-info
+copying src\book_catalog.egg-info\top_level.txt -> book_catalog-1.0.0\src\book_catalog.egg-info
+copying src\book_catalog\migration_assets\env.py -> book_catalog-1.0.0\src\book_catalog\migration_assets
+copying src\book_catalog\migration_assets\script.py.mako -> book_catalog-1.0.0\src\book_catalog\migration_assets
+copying src\book_catalog\migration_assets\versions\0001_initial_catalog.py -> book_catalog-1.0.0\src\book_catalog\migration_assets\versions
+copying src\book_catalog\migration_assets\versions\0002_add_book_isbn.py -> book_catalog-1.0.0\src\book_catalog\migration_assets\versions
+copying src\book_catalog\persistence\__init__.py -> book_catalog-1.0.0\src\book_catalog\persistence
+copying src\book_catalog\persistence\dbapi.py -> book_catalog-1.0.0\src\book_catalog\persistence
+copying src\book_catalog\persistence\main.py -> book_catalog-1.0.0\src\book_catalog\persistence
+copying src\book_catalog\persistence\models.py -> book_catalog-1.0.0\src\book_catalog\persistence
+copying src\book_catalog\persistence\repositories.py -> book_catalog-1.0.0\src\book_catalog\persistence
+copying src\book_catalog\persistence\services.py -> book_catalog-1.0.0\src\book_catalog\persistence
+copying src\book_catalog\swagger_assets\LICENSE -> book_catalog-1.0.0\src\book_catalog\swagger_assets
+copying src\book_catalog\swagger_assets\VERSION.txt -> book_catalog-1.0.0\src\book_catalog\swagger_assets
+copying src\book_catalog\swagger_assets\swagger-ui-bundle.js -> book_catalog-1.0.0\src\book_catalog\swagger_assets
+copying src\book_catalog\swagger_assets\swagger-ui.css -> book_catalog-1.0.0\src\book_catalog\swagger_assets
+Writing book_catalog-1.0.0\setup.cfg
+Creating tar archive
+removing 'book_catalog-1.0.0' (and everything under it)
+running egg_info
+writing src\book_catalog.egg-info\PKG-INFO
+writing dependency_links to src\book_catalog.egg-info\dependency_links.txt
+writing entry points to src\book_catalog.egg-info\entry_points.txt
+writing requirements to src\book_catalog.egg-info\requires.txt
+writing top-level names to src\book_catalog.egg-info\top_level.txt
+reading manifest file 'src\book_catalog.egg-info\SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'src\book_catalog.egg-info\SOURCES.txt'
+running bdist_wheel
+running build
+running build_py
+creating build\lib\book_catalog
+copying src\book_catalog\analytics.py -> build\lib\book_catalog
+copying src\book_catalog\api.py -> build\lib\book_catalog
+copying src\book_catalog\catalog.py -> build\lib\book_catalog
+copying src\book_catalog\config.py -> build\lib\book_catalog
+copying src\book_catalog\database.py -> build\lib\book_catalog
+copying src\book_catalog\exceptions.py -> build\lib\book_catalog
+copying src\book_catalog\exporters.py -> build\lib\book_catalog
+copying src\book_catalog\external_api.py -> build\lib\book_catalog
+copying src\book_catalog\importers.py -> build\lib\book_catalog
+copying src\book_catalog\main.py -> build\lib\book_catalog
+copying src\book_catalog\models.py -> build\lib\book_catalog
+copying src\book_catalog\parallel.py -> build\lib\book_catalog
+copying src\book_catalog\profiling.py -> build\lib\book_catalog
+copying src\book_catalog\protocols.py -> build\lib\book_catalog
+copying src\book_catalog\repositories.py -> build\lib\book_catalog
+copying src\book_catalog\runtime.py -> build\lib\book_catalog
+copying src\book_catalog\schemas.py -> build\lib\book_catalog
+copying src\book_catalog\services.py -> build\lib\book_catalog
+copying src\book_catalog\__init__.py -> build\lib\book_catalog
+creating build\lib\book_catalog\migration_assets
+copying src\book_catalog\migration_assets\env.py -> build\lib\book_catalog\migration_assets
+creating build\lib\book_catalog\persistence
+copying src\book_catalog\persistence\dbapi.py -> build\lib\book_catalog\persistence
+copying src\book_catalog\persistence\main.py -> build\lib\book_catalog\persistence
+copying src\book_catalog\persistence\models.py -> build\lib\book_catalog\persistence
+copying src\book_catalog\persistence\repositories.py -> build\lib\book_catalog\persistence
+copying src\book_catalog\persistence\services.py -> build\lib\book_catalog\persistence
+copying src\book_catalog\persistence\__init__.py -> build\lib\book_catalog\persistence
+creating build\lib\book_catalog\migration_assets\versions
+copying src\book_catalog\migration_assets\versions\0001_initial_catalog.py -> build\lib\book_catalog\migration_assets\versions
+copying src\book_catalog\migration_assets\versions\0002_add_book_isbn.py -> build\lib\book_catalog\migration_assets\versions
+running egg_info
+writing src\book_catalog.egg-info\PKG-INFO
+writing dependency_links to src\book_catalog.egg-info\dependency_links.txt
+writing entry points to src\book_catalog.egg-info\entry_points.txt
+writing requirements to src\book_catalog.egg-info\requires.txt
+writing top-level names to src\book_catalog.egg-info\top_level.txt
+reading manifest file 'src\book_catalog.egg-info\SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'src\book_catalog.egg-info\SOURCES.txt'
+creating build\lib\book_catalog\swagger_assets
+copying src\book_catalog\swagger_assets\LICENSE -> build\lib\book_catalog\swagger_assets
+copying src\book_catalog\swagger_assets\swagger-ui-bundle.js -> build\lib\book_catalog\swagger_assets
+copying src\book_catalog\swagger_assets\swagger-ui.css -> build\lib\book_catalog\swagger_assets
+copying src\book_catalog\swagger_assets\VERSION.txt -> build\lib\book_catalog\swagger_assets
+copying src\book_catalog\migration_assets\script.py.mako -> build\lib\book_catalog\migration_assets
+installing to build\bdist.win-amd64\wheel
+running install
+running install_lib
+creating build\bdist.win-amd64\wheel
+creating build\bdist.win-amd64\wheel\book_catalog
+copying build\lib\book_catalog\analytics.py -> build\bdist.win-amd64\wheel\.\book_catalog
+copying build\lib\book_catalog\api.py -> build\bdist.win-amd64\wheel\.\book_catalog
+copying build\lib\book_catalog\catalog.py -> build\bdist.win-amd64\wheel\.\book_catalog
+copying build\lib\book_catalog\config.py -> build\bdist.win-amd64\wheel\.\book_catalog
+copying build\lib\book_catalog\database.py -> build\bdist.win-amd64\wheel\.\book_catalog
+copying build\lib\book_catalog\exceptions.py -> build\bdist.win-amd64\wheel\.\book_catalog
+copying build\lib\book_catalog\exporters.py -> build\bdist.win-amd64\wheel\.\book_catalog
+copying build\lib\book_catalog\external_api.py -> build\bdist.win-amd64\wheel\.\book_catalog
+copying build\lib\book_catalog\importers.py -> build\bdist.win-amd64\wheel\.\book_catalog
+copying build\lib\book_catalog\main.py -> build\bdist.win-amd64\wheel\.\book_catalog
+creating build\bdist.win-amd64\wheel\book_catalog\migration_assets
+copying build\lib\book_catalog\migration_assets\env.py -> build\bdist.win-amd64\wheel\.\book_catalog\migration_assets
+copying build\lib\book_catalog\migration_assets\script.py.mako -> build\bdist.win-amd64\wheel\.\book_catalog\migration_assets
+creating build\bdist.win-amd64\wheel\book_catalog\migration_assets\versions
+copying build\lib\book_catalog\migration_assets\versions\0001_initial_catalog.py -> build\bdist.win-amd64\wheel\.\book_catalog\migration_assets\versions
+copying build\lib\book_catalog\migration_assets\versions\0002_add_book_isbn.py -> build\bdist.win-amd64\wheel\.\book_catalog\migration_assets\versions
+copying build\lib\book_catalog\models.py -> build\bdist.win-amd64\wheel\.\book_catalog
+copying build\lib\book_catalog\parallel.py -> build\bdist.win-amd64\wheel\.\book_catalog
+creating build\bdist.win-amd64\wheel\book_catalog\persistence
+copying build\lib\book_catalog\persistence\dbapi.py -> build\bdist.win-amd64\wheel\.\book_catalog\persistence
+copying build\lib\book_catalog\persistence\main.py -> build\bdist.win-amd64\wheel\.\book_catalog\persistence
+copying build\lib\book_catalog\persistence\models.py -> build\bdist.win-amd64\wheel\.\book_catalog\persistence
+copying build\lib\book_catalog\persistence\repositories.py -> build\bdist.win-amd64\wheel\.\book_catalog\persistence
+copying build\lib\book_catalog\persistence\services.py -> build\bdist.win-amd64\wheel\.\book_catalog\persistence
+copying build\lib\book_catalog\persistence\__init__.py -> build\bdist.win-amd64\wheel\.\book_catalog\persistence
+copying build\lib\book_catalog\profiling.py -> build\bdist.win-amd64\wheel\.\book_catalog
+copying build\lib\book_catalog\protocols.py -> build\bdist.win-amd64\wheel\.\book_catalog
+copying build\lib\book_catalog\repositories.py -> build\bdist.win-amd64\wheel\.\book_catalog
+copying build\lib\book_catalog\runtime.py -> build\bdist.win-amd64\wheel\.\book_catalog
+copying build\lib\book_catalog\schemas.py -> build\bdist.win-amd64\wheel\.\book_catalog
+copying build\lib\book_catalog\services.py -> build\bdist.win-amd64\wheel\.\book_catalog
+creating build\bdist.win-amd64\wheel\book_catalog\swagger_assets
+copying build\lib\book_catalog\swagger_assets\LICENSE -> build\bdist.win-amd64\wheel\.\book_catalog\swagger_assets
+copying build\lib\book_catalog\swagger_assets\swagger-ui-bundle.js -> build\bdist.win-amd64\wheel\.\book_catalog\swagger_assets
+copying build\lib\book_catalog\swagger_assets\swagger-ui.css -> build\bdist.win-amd64\wheel\.\book_catalog\swagger_assets
+copying build\lib\book_catalog\swagger_assets\VERSION.txt -> build\bdist.win-amd64\wheel\.\book_catalog\swagger_assets
+copying build\lib\book_catalog\__init__.py -> build\bdist.win-amd64\wheel\.\book_catalog
+running install_egg_info
+Copying src\book_catalog.egg-info to build\bdist.win-amd64\wheel\.\book_catalog-1.0.0-py3.12.egg-info
+running install_scripts
+creating build\bdist.win-amd64\wheel\book_catalog-1.0.0.dist-info\WHEEL
+creating 'C:\\Users\\Admin\\Documents\\Codex\\2026-11-07\\https-github-com-dioden5-student-grading\\outputs\\book-management-system-lab-10\\dist\\.tmp-xezm1d1w\\book_catalog-1.0.0-py3-none-any.whl' and adding 'build\\bdist.win-amd64\\wheel' to it
+adding 'book_catalog/__init__.py'
+adding 'book_catalog/analytics.py'
+adding 'book_catalog/api.py'
+adding 'book_catalog/catalog.py'
+adding 'book_catalog/config.py'
+adding 'book_catalog/database.py'
+adding 'book_catalog/exceptions.py'
+adding 'book_catalog/exporters.py'
+adding 'book_catalog/external_api.py'
+adding 'book_catalog/importers.py'
+adding 'book_catalog/main.py'
+adding 'book_catalog/models.py'
+adding 'book_catalog/parallel.py'
+adding 'book_catalog/profiling.py'
+adding 'book_catalog/protocols.py'
+adding 'book_catalog/repositories.py'
+adding 'book_catalog/runtime.py'
+adding 'book_catalog/schemas.py'
+adding 'book_catalog/services.py'
+adding 'book_catalog/migration_assets/env.py'
+adding 'book_catalog/migration_assets/script.py.mako'
+adding 'book_catalog/migration_assets/versions/0001_initial_catalog.py'
+adding 'book_catalog/migration_assets/versions/0002_add_book_isbn.py'
+adding 'book_catalog/persistence/__init__.py'
+adding 'book_catalog/persistence/dbapi.py'
+adding 'book_catalog/persistence/main.py'
+adding 'book_catalog/persistence/models.py'
+adding 'book_catalog/persistence/repositories.py'
+adding 'book_catalog/persistence/services.py'
+adding 'book_catalog/swagger_assets/LICENSE'
+adding 'book_catalog/swagger_assets/VERSION.txt'
+adding 'book_catalog/swagger_assets/swagger-ui-bundle.js'
+adding 'book_catalog/swagger_assets/swagger-ui.css'
+adding 'book_catalog-1.0.0.dist-info/licenses/LICENSE'
+adding 'book_catalog-1.0.0.dist-info/METADATA'
+adding 'book_catalog-1.0.0.dist-info/WHEEL'
+adding 'book_catalog-1.0.0.dist-info/entry_points.txt'
+adding 'book_catalog-1.0.0.dist-info/top_level.txt'
+adding 'book_catalog-1.0.0.dist-info/RECORD'
+removing build\bdist.win-amd64\wheel
+Successfully built book_catalog-1.0.0.tar.gz and book_catalog-1.0.0-py3-none-any.whl
+* Creating isolated environment: venv+pip...
+* Installing packages in isolated environment:
+  - setuptools>=77
+* Getting build dependencies for sdist...
+* Installed build dependency versions:
+  - setuptools==84.2.1
+* Building sdist...
+* Building wheel from sdist
+* Creating isolated environment: venv+pip...
+* Installing packages in isolated environment:
+  - setuptools>=77
+* Getting build dependencies for wheel...
+* Installed build dependency versions:
+  - setuptools==84.2.1
+* Building wheel...

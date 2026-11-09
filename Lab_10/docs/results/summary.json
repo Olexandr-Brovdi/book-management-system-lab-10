@@ -1,0 +1,42 @@
+{
+  "tests": 222,
+  "failed": 0,
+  "coverage": {
+    "covered_lines": 1045,
+    "num_statements": 1059,
+    "percent_covered": 98.50869925434962,
+    "percent_covered_display": "99",
+    "missing_lines": 14,
+    "excluded_lines": 15,
+    "percent_statements_covered": 98.67799811142588,
+    "percent_statements_covered_display": "99",
+    "num_branches": 148,
+    "num_partial_branches": 4,
+    "covered_branches": 144,
+    "missing_branches": 4,
+    "percent_branches_covered": 97.29729729729729,
+    "percent_branches_covered_display": "97"
+  },
+  "quality": {
+    "lint": "PASS",
+    "format": "PASS",
+    "mypy": "PASS",
+    "build": "PASS",
+    "twine": "PASS"
+  },
+  "artifacts": [
+    {
+      "name": "book_catalog-1.0.0-py3-none-any.whl",
+      "bytes": 517744,
+      "sha256": "dc1250ab414b28989aaf366f1cc7d479bf617c87fea6f27fe9369d64fb5f0a86"
+    },
+    {
+      "name": "book_catalog-1.0.0.tar.gz",
+      "bytes": 513628,
+      "sha256": "48ed7e909d80bfb1297ae9f1d8dc0ed37b32666d948be81ea74d84b5fefdb0db"
+    }
+  ],
+  "docker": "NOT_RUN: Engine unavailable; Docker Desktop access denied",
+  "ci": "NOT_RUN: push rejected without OAuth workflow scope; user deferred authorization",
+  "publication": "DEFERRED_BY_USER"
+}

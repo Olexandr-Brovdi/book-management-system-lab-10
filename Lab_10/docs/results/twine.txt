@@ -1,0 +1,8 @@
+$ C:\Users\Admin\Documents\Codex\2026-11-07\https-github-com-dioden5-student-grading\outputs\book-management-system-lab-10\.venv\Scripts\python.exe -m twine check C:\Users\Admin\Documents\Codex\2026-11-07\https-github-com-dioden5-student-grading\outputs\book-management-system-lab-10\dist\book_catalog-1.0.0-py3-none-any.whl C:\Users\Admin\Documents\Codex\2026-11-07\https-github-com-dioden5-student-grading\outputs\book-management-system-lab-10\dist\book_catalog-1.0.0.tar.gz
+Checking 
+C:\Users\Admin\Documents\Codex\2026-11-07\https-github-com-dioden5-student-gradi
+ng\outputs\book-management-system-lab-10\dist\book_catalog-1.0.0-py3-none-any.wh
+l: PASSED
+Checking 
+C:\Users\Admin\Documents\Codex\2026-11-07\https-github-com-dioden5-student-gradi
+ng\outputs\book-management-system-lab-10\dist\book_catalog-1.0.0.tar.gz: PASSED

@@ -1,0 +1,47 @@
+........................................................................ [ 32%]
+........................................................................ [ 64%]
+........................................................................ [ 97%]
+......                                                                   [100%]
+============================== warnings summary ===============================
+..\.venv\Lib\site-packages\starlette\testclient.py:45
+  C:\Users\Admin\Documents\Codex\2026-11-07\https-github-com-dioden5-student-grading\outputs\book-management-system-lab-10\.venv\Lib\site-packages\starlette\testclient.py:45: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.12.14-final-0 _______________
+
+Name                                           Stmts   Miss Branch BrPart  Cover   Missing
+------------------------------------------------------------------------------------------
+src\book_catalog\__init__.py                       0      0      0      0   100%
+src\book_catalog\analytics.py                     77      0     12      0   100%
+src\book_catalog\api.py                          148      0     12      0   100%
+src\book_catalog\catalog.py                       27      0      6      0   100%
+src\book_catalog\config.py                        59      2     12      0    97%   39-40
+src\book_catalog\database.py                      44      0      0      0   100%
+src\book_catalog\exceptions.py                     6      0      0      0   100%
+src\book_catalog\exporters.py                     36      0      6      0   100%
+src\book_catalog\external_api.py                  50      0     12      1    98%   58->exit
+src\book_catalog\importers.py                     24      0      6      0   100%
+src\book_catalog\main.py                          22      0      0      0   100%
+src\book_catalog\models.py                        30      0     10      0   100%
+src\book_catalog\parallel.py                     107      5     26      3    94%   15, 85, 97, 101-102
+src\book_catalog\persistence\__init__.py           0      0      0      0   100%
+src\book_catalog\persistence\dbapi.py             11      0      0      0   100%
+src\book_catalog\persistence\main.py              46      0      4      0   100%
+src\book_catalog\persistence\models.py            21      0      0      0   100%
+src\book_catalog\persistence\repositories.py      80      0     14      0   100%
+src\book_catalog\persistence\services.py         117      0     12      0   100%
+src\book_catalog\profiling.py                     40      0      2      0   100%
+src\book_catalog\protocols.py                      7      0      0      0   100%
+src\book_catalog\repositories.py                  14      0      4      0   100%
+src\book_catalog\runtime.py                       21      7      2      0    70%   24-32
+src\book_catalog\schemas.py                       43      0      4      0   100%
+src\book_catalog\services.py                      29      0      4      0   100%
+------------------------------------------------------------------------------------------
+TOTAL                                           1059     14    148      4    99%
+Coverage HTML written to dir htmlcov
+Coverage XML written to file coverage.xml
+Coverage JSON written to file coverage.json
+Required test coverage of 85% reached. Total coverage: 98.51%
+222 passed, 1 warning in 27.82s

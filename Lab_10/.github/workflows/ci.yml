@@ -1,0 +1,65 @@
+name: Production CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install
+        run: python -m pip install -e ".[dev]"
+      - name: Ruff lint
+        run: ruff check .
+      - name: Ruff format
+        run: ruff format --check .
+      - name: Type check
+        run: mypy src
+      - name: Tests and coverage
+        run: pytest -v --junitxml=test-results.xml
+      - name: Build wheel and sdist
+        run: python -m build
+      - name: Distribution metadata
+        run: python -m twine check dist/*
+      - name: Clean wheel installation and smoke test
+        run: |
+          python -m venv /tmp/wheel-env
+          /tmp/wheel-env/bin/pip install dist/*.whl
+          cd /tmp
+          /tmp/wheel-env/bin/book-catalog --help
+          /tmp/wheel-env/bin/python "$GITHUB_WORKSPACE/tools/wheel_smoke.py"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: python-${{ matrix.python }}-package-and-tests
+          path: |
+            dist/
+            coverage.xml
+            test-results.xml
+  docker:
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Build Docker image
+        run: docker build --tag book-catalog:ci .
+      - name: Container health, environment, API and persistent volume
+        run: python tools/docker_smoke.py
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: docker-evidence
+          path: |
+            docs/results/docker.json
+            docs/results/docker.log
