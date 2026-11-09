@@ -12,7 +12,11 @@ ROOT = Path(__file__).resolve().parents[1]
 def console(name, lines):
     wrapped = []
     for line in lines:
-        wrapped.extend(textwrap.wrap(line, width=110, replace_whitespace=False) or [""])
+        for physical_line in line.splitlines() or [""]:
+            wrapped.extend(
+                textwrap.wrap(physical_line, width=110, replace_whitespace=False)
+                or [""]
+            )
     font = ImageFont.truetype("C:/Windows/Fonts/consola.ttf", 19)
     image = Image.new("RGB", (1320, 50 + 26 * len(wrapped)), (247, 248, 250))
     draw = ImageDraw.Draw(image)

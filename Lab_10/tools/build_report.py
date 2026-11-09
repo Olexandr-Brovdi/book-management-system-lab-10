@@ -318,7 +318,7 @@ Set-Location $env:TEMP
         "Справжній Swagger UI локального API, запущеного з wheel у чистому virtual environment. Версія1.0.0, Lab_10, variant2.",
     )
     p(
-        "Swagger assets завантажуються з установленого book_catalog, без CDN і без checkout/src. Цей знімок підтверджує локальний запуск installed package. Він не подається як знімок контейнера, який у поточному середовищі запустити не вдалося."
+        "Swagger assets завантажуються з установленого book_catalog, без CDN і без checkout/src. Цей знімок підтверджує локальний запуск installed package. Роботу API в Docker окремо підтверджує фактичний smoke test у GitHub Actions, наведений у розділі 14."
     )
 
     page("12. Dockerfile та .dockerignore")
