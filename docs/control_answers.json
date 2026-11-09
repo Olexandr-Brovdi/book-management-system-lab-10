@@ -1,0 +1,282 @@
+[
+  [
+    "Що таке Python package?",
+    "Python package — організований простір модулів, які можна імпортувати; у проєкті це book_catalog у src-layout."
+  ],
+  [
+    "Що таке distribution package?",
+    "Distribution package — набір коду, ресурсів і metadata для встановлення менеджером пакетів; тут distribution book-catalog, import name book_catalog."
+  ],
+  [
+    "Що таке wheel?",
+    "Wheel — готовий до встановлення distribution archive: файли пакета й metadata вже підготовлено, тому повторний source build зазвичай не потрібен."
+  ],
+  [
+    "Яке розширення має wheel?",
+    "Wheel має розширення .whl; у цій роботі book_catalog-1.0.0-py3-none-any.whl."
+  ],
+  [
+    "Що таке sdist?",
+    "sdist — source distribution, зазвичай .tar.gz, з вихідними файлами та metadata, з якого можна побудувати wheel."
+  ],
+  [
+    "Для чого використовується pyproject.toml?",
+    "pyproject.toml описує build backend, project metadata, dependencies, scripts та конфігурацію інструментів."
+  ],
+  [
+    "Що містить [build-system]?",
+    "[build-system] містить build requirements і build-backend; тут setuptools>=77 та setuptools.build_meta."
+  ],
+  [
+    "Що містить [project]?",
+    "[project] містить name, version, description, Python requirement, dependencies, author, license, readme та entry points."
+  ],
+  [
+    "Як створити wheel?",
+    "python -m build --wheel створює wheel у dist; python -m build без цього прапорця створює обидва distribution formats."
+  ],
+  [
+    "Як створити sdist?",
+    "python -m build --sdist створює source archive; повний build також перевіряє можливість побудувати wheel зі sdist."
+  ],
+  [
+    "Для чого використовується python -m build?",
+    "python -m build запускає стандартний frontend PEP517 build backend в ізольованому build environment."
+  ],
+  [
+    "Що таке semantic versioning?",
+    "Semantic versioning — схема MAJOR.MINOR.PATCH для позначення сумісності змін; фінальна версія проєкту 1.0.0."
+  ],
+  [
+    "Що означає MAJOR?",
+    "MAJOR підвищують при несумісній зміні публічного контракту."
+  ],
+  [
+    "Що означає MINOR?",
+    "MINOR підвищують при додаванні сумісної функціональності."
+  ],
+  [
+    "Що означає PATCH?",
+    "PATCH підвищують при сумісних виправленнях помилок."
+  ],
+  [
+    "Що таке environment variable?",
+    "Environment variable — іменоване значення середовища процесу, яке застосунок читає без зміни source code."
+  ],
+  [
+    "Навіщо configuration виносити з коду?",
+    "Винесення configuration дозволяє запускати той самий package/image у development, test і production з різними параметрами."
+  ],
+  [
+    "Що таке secret?",
+    "Secret — конфіденційне значення, яке дає доступ до ресурсу або має залишатися приватним."
+  ],
+  [
+    "Наведіть приклади secrets.",
+    "Приклади: access token, API key, password, private key, database credentials. Цей локальний SQLite-проєкт не потребує вигаданих credentials."
+  ],
+  [
+    "Чому secrets не можна commit у Git?",
+    "Secrets у Git можуть потрапити в public history, forks, caches і logs; просте видалення з поточного файла не скасовує вже оприлюднений доступ."
+  ],
+  [
+    "Для чого використовується .env?",
+    ".env — локальний необов’язковий файл configuration; Settings може прочитати його, а environment має вищий пріоритет."
+  ],
+  [
+    "Чому .env має бути у .gitignore?",
+    ".env і .env.* можуть містити приватні значення, тому їх ігнорують у Git та Docker context. Виняток — безпечний .env.example."
+  ],
+  [
+    "Для чого потрібний .env.example?",
+    ".env.example документує назви змінних і безпечні defaults без реальних tokens або passwords."
+  ],
+  [
+    "Що таке Docker?",
+    "Docker — інструменти для побудови images та запуску ізольованих containers із передбачуваним середовищем."
+  ],
+  [
+    "Що таке Dockerfile?",
+    "Dockerfile — послідовність інструкцій, що визначає build image: base, copies, installation, environment, user і startup."
+  ],
+  [
+    "Що таке Docker image?",
+    "Docker image — шаблон filesystem layers і configuration для контейнера, ідентифікований immutable image ID."
+  ],
+  [
+    "Що таке Docker container?",
+    "Docker container — створений із image екземпляр із власним runtime state та writable layer."
+  ],
+  [
+    "Чим image відрізняється від container?",
+    "Image описує шаблон, container — екземпляр його виконання; з одного image можна запускати кілька containers."
+  ],
+  [
+    "Для чого використовується docker build?",
+    "docker build обробляє Dockerfile та build context і створює image з указаним tag."
+  ],
+  [
+    "Для чого використовується docker run?",
+    "docker run створює та запускає container; параметри передають ports, environment, volumes і runtime options."
+  ],
+  [
+    "Що робить EXPOSE?",
+    "EXPOSE документує порт image, але сам не відкриває його на host; для цього потрібен -p/--publish."
+  ],
+  [
+    "Що робить CMD?",
+    "CMD задає типову команду запуску, яку можна перевизначити. У цій роботі вона запускає book-catalog API."
+  ],
+  [
+    "Для чого потрібний WORKDIR?",
+    "WORKDIR задає робочий каталог наступних build instructions і команди контейнера."
+  ],
+  [
+    "Що робить COPY?",
+    "COPY додає вибрані файли з build context або іншого stage до image."
+  ],
+  [
+    "Для чого використовується .dockerignore?",
+    ".dockerignore виключає .git, .venv, .env, caches, reports та інші зайві файли з build context, зменшуючи ризик витоку й розмір передачі."
+  ],
+  [
+    "Що таке Docker volume?",
+    "Docker volume — кероване Docker сховище, яке живе незалежно від writable layer конкретного контейнера; у ньому зберігається SQLite."
+  ],
+  [
+    "Для чого потрібний health endpoint?",
+    "Health endpoint дозволяє перевірити готовність сервісу. /health повертає200 при доступній БД і503 при помилці перевірки, без розкриття credentials."
+  ],
+  [
+    "Що таке CI?",
+    "CI — Continuous Integration: автоматичні перевірки кожної інтеграції змін у repository."
+  ],
+  [
+    "Що таке CD?",
+    "CD означає Continuous Delivery або Continuous Deployment. Тут pipeline готує перевірені artifacts; автоматична публікація у зовнішній registry не налаштована."
+  ],
+  [
+    "Що таке GitHub Actions?",
+    "GitHub Actions — система workflow jobs, що запускаються на runners за подіями repository."
+  ],
+  [
+    "Що таке workflow?",
+    "Workflow — YAML-опис подій і jobs у .github/workflows; тут ci.yml запускає quality matrix та Docker verification."
+  ],
+  [
+    "Що таке job?",
+    "Job — набір steps на одному runner; jobs можуть залежати один від одного через needs."
+  ],
+  [
+    "Що таке step?",
+    "Step — окрема команда або action усередині job, наприклад ruff check, pytest або upload-artifact."
+  ],
+  [
+    "Що таке runner?",
+    "Runner — машина/середовище, що виконує job; тут GitHub-hosted ubuntu-latest."
+  ],
+  [
+    "Коли повинен запускатися CI?",
+    "CI запускається на push у main та pull_request; workflow_dispatch дозволяє ручний повтор. Тести не залежать від локального комп’ютера автора."
+  ],
+  [
+    "Для чого потрібний lint?",
+    "Lint виявляє syntax/name/import/style issues і потенційні помилки до запуску програми."
+  ],
+  [
+    "Для чого використовується Ruff?",
+    "Ruff виконує lint і форматування; CI запускає ruff check . та ruff format --check . як окремі перевірки."
+  ],
+  [
+    "Для чого потрібний mypy?",
+    "mypy статично перевіряє узгодженість Python type annotations, не замінюючи runtime validation і tests."
+  ],
+  [
+    "Що таке type checking?",
+    "Type checking — аналіз сумісності типів аргументів, результатів і операцій; використаний mypy перевіряє application source."
+  ],
+  [
+    "Навіщо tests запускати в CI?",
+    "Тести у CI перевіряють поведінку на незалежному середовищі й запобігають злиттю регресій, які не помічені локально."
+  ],
+  [
+    "Навіщо package build виконувати в CI?",
+    "Package build у CI виявляє помилки metadata, відсутні package resources та проблеми wheel/sdist; додатковий clean install перевіряє справжній distribution."
+  ],
+  [
+    "Навіщо Docker build виконувати у CI?",
+    "Docker build у CI перевіряє Dockerfile й залежності на чистому Linux runner; запуск контейнера окремо перевіряє те, чого сам build не доводить."
+  ],
+  [
+    "Що таке GitHub Secret?",
+    "GitHub Secret — зашифроване configuration value у repository/environment settings для авторизованого workflow, а не текст у YAML."
+  ],
+  [
+    "Як використовувати secret у workflow?",
+    "Secret можна передати step через env зі зверненням ${{ secrets.NAME }}; значення не слід друкувати або записувати в image. Цей workflow не потребує власних secrets."
+  ],
+  [
+    "Що таке documentation?",
+    "Documentation описує призначення, контракт, запуск, конфігурацію та перевірку системи для іншого користувача."
+  ],
+  [
+    "Що повинен містити README?",
+    "README має містити предметну область, installation, configuration, local/Docker run, API, tests, структуру, CI/CD та сценарій демонстрації варіанта2."
+  ],
+  [
+    "Для чого потрібні docstrings?",
+    "Docstrings пояснюють призначення API/функції, аргументи, результат і суттєві обмеження або винятки біля самого коду."
+  ],
+  [
+    "Що таке OpenAPI?",
+    "OpenAPI — машинозчитувана специфікація HTTP API: routes, methods, schemas, parameters і responses."
+  ],
+  [
+    "Що таке /docs у FastAPI?",
+    "/docs у FastAPI — інтерактивний Swagger UI, який показує OpenAPI і дозволяє виконувати запити."
+  ],
+  [
+    "Що таке /openapi.json?",
+    "/openapi.json повертає сам JSON контракт; це не інтерактивний UI. /redoc — інший спосіб його читабельного подання."
+  ],
+  [
+    "Що таке logging?",
+    "Logging — керований запис подій із рівнями, часом, logger name та handlers."
+  ],
+  [
+    "Чому logging краще за print?",
+    "Logging має рівні й налаштовуваний формат/напрямок, тому краще підходить для сервісу, ніж некеровані print. CLI demonstration може друкувати результати команд."
+  ],
+  [
+    "Що таке production configuration?",
+    "Production configuration визначає runtime environment, persistent database, log level та запуск без development reload."
+  ],
+  [
+    "Чим development відрізняється від production?",
+    "Development може використовувати DEBUG і reload; production запускає стабільну команду без reload, persistent data та явні environment settings."
+  ],
+  [
+    "Що таке Docker healthcheck?",
+    "Docker HEALTHCHECK періодично виконує команду перевірки; його healthy/unhealthy state відрізняється від самого факту running process."
+  ],
+  [
+    "Для чого потрібний non-root user?",
+    "Non-root user зменшує привілеї застосунку всередині контейнера; тут UID10001 має доступ до data volume без запуску API від root."
+  ],
+  [
+    "Що таке multi-stage build?",
+    "Multi-stage build відокремлює build tools і wheelhouse від runtime stage; фінальний image встановлює готовий wheel та runtime dependencies."
+  ],
+  [
+    "Що таке coverage?",
+    "Coverage — частка виконаних statements/branches під час tests; це показник прогалин, а не гарантія відсутності помилок."
+  ],
+  [
+    "Навіщо встановлювати coverage threshold?",
+    "Coverage threshold завершує CI помилкою при падінні покриття нижче погодженого рівня; тут мінімум85%."
+  ],
+  [
+    "Що означає green CI pipeline?",
+    "Green CI pipeline означає успішне завершення всіх обов’язкових jobs і steps для конкретного commit, а не гарантію всіх можливих production сценаріїв."
+  ]
+]

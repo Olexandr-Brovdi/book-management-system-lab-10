@@ -1,0 +1,2 @@
+$ C:\Users\Admin\Documents\Codex\2026-11-07\https-github-com-dioden5-student-grading\outputs\book-management-system-lab-10\.venv\Scripts\python.exe -m ruff check .
+All checks passed!

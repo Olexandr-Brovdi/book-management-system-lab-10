@@ -5,6 +5,24 @@ import io
 from pathlib import Path
 import pstats
 import tracemalloc
+from typing import Protocol, TypedDict, cast
+
+
+class _StatsData(Protocol):
+    """Runtime pstats data attributes omitted by the installed stdlib stubs."""
+
+    stats: dict[tuple[str, int, str], tuple[int, int, float, float, object]]
+    total_tt: float
+
+
+class ProfileRow(TypedDict):
+    function: str
+    filename: str
+    line: int
+    ncalls: int
+    primitive_calls: int
+    tottime: float
+    cumtime: float
 
 
 def profile_call(function, output: Path, *args) -> dict:
@@ -14,17 +32,18 @@ def profile_call(function, output: Path, *args) -> dict:
     stream = io.StringIO()
     stats = pstats.Stats(profiler, stream=stream).sort_stats("cumulative")
     stats.print_stats(25)
+    data = cast(_StatsData, stats)
     output.with_suffix(".txt").write_text(stream.getvalue(), encoding="utf-8")
-    rows = []
+    rows: list[ProfileRow] = []
     for (filename, line, name), (
         primitive,
         calls,
         own,
         cumulative,
         callers,
-    ) in stats.stats.items():
+    ) in data.stats.items():
         rows.append(
-            dict(
+            ProfileRow(
                 function=name,
                 filename=filename,
                 line=line,
@@ -36,7 +55,7 @@ def profile_call(function, output: Path, *args) -> dict:
         )
     rows.sort(key=lambda row: row["cumtime"], reverse=True)
     return {
-        "total_seconds": stats.total_tt,
+        "total_seconds": data.total_tt,
         "functions": rows,
         "result_type": type(result).__name__,
     }

@@ -1,0 +1,4 @@
+2026-11-09 15:21:02,903 INFO book_catalog Book Catalog started version=1.0.0 environment=test
+2026-11-09 15:21:03,315 INFO book_catalog Book Catalog stopped
+2026-11-09 15:21:03,358 INFO book_catalog Book Catalog started version=1.0.0 environment=test
+2026-11-09 15:21:03,366 INFO book_catalog Book Catalog stopped

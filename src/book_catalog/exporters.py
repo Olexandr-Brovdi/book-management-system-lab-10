@@ -6,14 +6,14 @@ import tempfile
 from collections.abc import Iterable, Iterator
 from contextlib import contextmanager
 from pathlib import Path
-from typing import TextIO
+from typing import IO
 
 from book_catalog.exceptions import ExportError
 from book_catalog.models import Book
 
 
 @contextmanager
-def atomic_output(path: Path) -> Iterator[TextIO]:
+def atomic_output(path: Path) -> Iterator[IO[str]]:
     temporary = None
     try:
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -26,7 +26,7 @@ def atomic_output(path: Path) -> Iterator[TextIO]:
             delete=False,
         ) as handle:
             temporary = Path(handle.name)
-            yield handle
+            yield handle.file
             handle.flush()
             os.fsync(handle.fileno())
         os.replace(temporary, path)
