@@ -1,0 +1,4 @@
+min_year: 1800
+max_year: 2026
+input: data/books.csv
+output: output/books.json
